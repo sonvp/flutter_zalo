@@ -18,14 +18,37 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+    <key>CFBundleURLTypes</key>
+    	<array>
+    		<dict>
+    			<key>CFBundleTypeRole</key>
+    			<string>Editor</string>
+    			<key>CFBundleURLName</key>
+    			<string>com.flutterzalopay.flutterZaloSdkExample</string>
+    			<key>CFBundleURLSchemes</key>
+    			<array>
+    				<string>demozpdk</string>
+    			</array>
+    		</dict>
+    		<dict>
+    			<key>CFBundleTypeRole</key>
+    			<string>Editor</string>
+    			<key>CFBundleURLName</key>
+    			<string>com.flutterzalopay.flutterZaloSdkExample</string>
+    			<key>CFBundleURLSchemes</key>
+    			<array>
+    				<string>zp-redirect-2553</string>
+    			</array>
+    		</dict>
+    	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSApplicationQueriesSchemes</key>
-    	<array>
-            <string>zalo</string>
-            <string>zalopay</string>
-            <string>zalopay.api.v2</string>
-        </array>
+	<array>
+		<string>zalo</string>
+		<string>zalopay</string>
+		<string>zalopay.api.v2</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
