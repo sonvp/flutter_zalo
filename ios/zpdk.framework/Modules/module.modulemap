@@ -1,0 +1,6 @@
+framework module zpdk {
+  umbrella header "zpdk.h"
+
+  export *
+  module * { export * }
+}
