@@ -33,6 +33,8 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':zpdk-release')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/zpdk-release.aar')
+
 }
 
