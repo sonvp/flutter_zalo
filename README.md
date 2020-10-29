@@ -90,5 +90,8 @@ override func application(_ app: UIApplication, open url: URL, options: [UIAppli
   ZaloPaySDK.sharedInstance()?.initWithAppId(2553, uriScheme: "demozpdk://app", environment: .sandbox)
 ```
 
+### How To Use
 
+Call ```FlutterZaloPaySDK.payOrder(zpToken: String)``` to use
+Latest status of the order can be accesed through ```FlutterZaloPaySDK.currentStatus```. Default will be null
 
