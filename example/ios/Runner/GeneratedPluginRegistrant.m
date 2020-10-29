@@ -4,10 +4,10 @@
 
 #import "GeneratedPluginRegistrant.h"
 
-#if __has_include(<flutter_zalo_sdk/FlutterZaloSdkPlugin.h>)
-#import <flutter_zalo_sdk/FlutterZaloSdkPlugin.h>
+#if __has_include(<flutter_zalopay_sdk/FlutterZaloSdkPlugin.h>)
+#import <flutter_zalopay_sdk/FlutterZaloSdkPlugin.h>
 #else
-@import flutter_zalo_sdk;
+@import flutter_zalopay_sdk;
 #endif
 
 @implementation GeneratedPluginRegistrant

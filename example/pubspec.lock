@@ -81,7 +81,7 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_zalo_sdk:
+  flutter_zalopay_sdk:
     dependency: "direct main"
     description:
       path: ".."

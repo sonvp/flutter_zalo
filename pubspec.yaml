@@ -1,8 +1,10 @@
-name: flutter_zalo_sdk
-description: A Zalo SDK.
+name: flutter_zalopay_sdk
+description: A plugin for Zalo Pay. Supports iOS and Android.
 version: 0.0.1
 author:
-homepage:
+  - Son Vo <ngocson160391@gmail.com>
+  - Ha Tran <tranvietha.2809@gmail.com>
+homepage: https://github.com/sonvp/flutter_zalo
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -66,26 +68,3 @@ flutter:
   #
   # For details regarding fonts in packages, see
   # https://flutter.dev/custom-fonts/#from-packages
-  fonts:
-    - family: Josefin Sans
-      fonts:
-        - asset: fonts/JosefinSans-Bold.ttf
-          weight: 700
-        - asset: fonts/JosefinSans-BoldItalic.ttf
-          weight: 700
-        - asset: fonts/JosefinSans-SemiBold.ttf
-          weight: 600
-        - asset: fonts/JosefinSans-Regular.ttf
-          weight: 400
-        - asset: fonts/JosefinSans-SemiBoldItalic.ttf
-          weight: 600
-        - asset: fonts/JosefinSans-Italic.ttf
-          weight: 400
-        - asset: fonts/JosefinSans-Light.ttf
-          weight: 300
-        - asset: fonts/JosefinSans-LightItalic.ttf
-          weight: 300
-        - asset: fonts/JosefinSans-Thin.ttf
-          weight: 100
-        - asset: fonts/JosefinSans-ThinItalic.ttf
-          weight: 100
