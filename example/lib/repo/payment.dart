@@ -1,10 +1,10 @@
-import 'package:flutter_zalo_sdk/models/create_order_response.dart';
+import 'package:flutter_zalo_sdk_example/models/create_order_response.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter_zalo_sdk/utils/endpoints.dart';
+import 'package:flutter_zalo_sdk_example/utils/endpoints.dart';
 
-import 'package:flutter_zalo_sdk/utils/util.dart' as utils;
+import 'package:flutter_zalo_sdk_example/utils/util.dart' as utils;
 import 'package:sprintf/sprintf.dart';
 
 class ZaloPayConfig {

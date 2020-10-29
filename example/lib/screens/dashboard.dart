@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_zalo_sdk/screens/home_zalo_pay.dart';
+import 'package:flutter_zalo_sdk_example/screens/home_zalo_pay.dart';
 
 
 class Dashboard extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:intl/intl.dart';
-import 'package:flutter_zalo_sdk/repo/payment.dart';
+import 'package:flutter_zalo_sdk_example/repo/payment.dart';
 import 'package:sprintf/sprintf.dart';
 import 'package:crypto/crypto.dart';
 

@@ -66,7 +66,6 @@ public class SwiftFlutterZaloSdkPlugin: NSObject, FlutterPlugin {
         let  _zptoken = args?["zptoken"] as? String
         ZaloPaySDK.sharedInstance()?.paymentDelegate = streamHandler
         ZaloPaySDK.sharedInstance()?.payOrder(_zptoken)
-        print("Ayoooo received order")
         //result("Processing...")
     }
   }

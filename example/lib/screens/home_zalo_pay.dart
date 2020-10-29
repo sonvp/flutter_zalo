@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_zalo_sdk/repo/payment.dart';
-import 'package:flutter_zalo_sdk/utils/theme_data.dart';
+import 'package:flutter_zalo_sdk_example/repo/payment.dart';
+import 'package:flutter_zalo_sdk_example/utils/theme_data.dart';
 import 'package:flutter/services.dart';
 
 class HomeZaloPay extends StatefulWidget {

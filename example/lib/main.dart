@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_zalo_sdk/screens/dashboard.dart';
-import 'package:flutter_zalo_sdk/utils/config.dart';
-import 'package:flutter_zalo_sdk/utils/theme_data.dart';
+import 'package:flutter_zalo_sdk_example/screens/dashboard.dart';
+import 'package:flutter_zalo_sdk_example/utils/config.dart';
+import 'package:flutter_zalo_sdk_example/utils/theme_data.dart';
 
 void main() => runApp(App());
 
