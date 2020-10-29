@@ -73,7 +73,7 @@ https://docs.zalopay.vn/docs/apptoapp/api.html#ngu-canh-su-dung
 	</array>
 ```
 
-* Add the following to your ``ÀppDelegate.swift``` file
+* Add the following to your ``AppDelegate.swift``` file
 
 ```swift
 ...
