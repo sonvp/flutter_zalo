@@ -3,7 +3,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/services.dart';
 
-class FlutterZaloSdk {
+class FlutterZaloPaySdk {
 
    static const MethodChannel _channel =
       const MethodChannel('flutter.native/channelPayOrder');

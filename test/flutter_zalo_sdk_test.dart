@@ -18,6 +18,6 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    expect(await FlutterZaloSdk.platformVersion, '42');
+    expect(await FlutterZaloPaySdk.platformVersion, '42');
   });
 }
