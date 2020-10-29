@@ -39,7 +39,7 @@ https://docs.zalopay.vn/docs/apptoapp/api.html#ngu-canh-su-dung
 
 ### iOS setup:
 
-* Set up your ``Ìnfo.plist``` as below
+* Set up your ```Info.plist``` as below
 
 ```xml
 <key>CFBundleURLTypes</key>
