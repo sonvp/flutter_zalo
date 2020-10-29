@@ -55,7 +55,6 @@ public class SwiftFlutterZaloSdkPlugin: NSObject, FlutterPlugin {
     let channel = FlutterMethodChannel(name: "flutter.native/channelPayOrder", binaryMessenger: registrar.messenger())
     let eventChannel = FlutterEventChannel(name: "flutter.native/eventPayOrder", binaryMessenger: registrar.messenger())
     let instance = SwiftFlutterZaloSdkPlugin()
-    ZaloPaySDK.sharedInstance()?.initWithAppId(2553, uriScheme: "demozpdk://app", environment: .sandbox)
     eventChannel.setStreamHandler(StreamHandler())
     registrar.addMethodCallDelegate(instance, channel: channel)
   }

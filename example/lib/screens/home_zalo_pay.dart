@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_zalo_sdk/flutter_zalo_sdk.dart';
 import 'package:flutter_zalo_sdk_example/repo/payment.dart';
 import 'package:flutter_zalo_sdk_example/utils/theme_data.dart';
 import 'package:flutter/services.dart';
@@ -102,9 +103,10 @@ class _HomeZaloPayState extends State<HomeZaloPay> {
           onTap: () async {
             String response = "";
             try {
-              final String result = await platform.invokeMethod('payOrder', {"zptoken": zpToken});
-              response = result;
-              print("payOrder Result: '$result'.");
+              //final String result = await platform.invokeMethod('payOrder', {"zptoken": zpToken});
+              await FlutterZaloSdk.payOrder(zpToken: zpToken);
+              response = FlutterZaloSdk.currentStatus;
+              print("payOrder Result: '$response'.");
             } on PlatformException catch (e) {
               print("Failed to Invoke: '${e.message}'.");
               response = "Thanh toán thất bại";
