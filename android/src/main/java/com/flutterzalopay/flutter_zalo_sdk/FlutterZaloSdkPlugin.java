@@ -1,11 +1,22 @@
 package com.flutterzalopay.flutter_zalo_sdk;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.embedding.engine.plugins.activity.ActivityAware;
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
@@ -22,23 +33,54 @@ import vn.zalopay.sdk.listeners.PayOrderListener;
 /** FlutterZaloSdkPlugin */
 
 public class FlutterZaloSdkPlugin implements FlutterPlugin, ActivityAware, MethodCallHandler, NewIntentListener {
-   Activity mActivity;
+  private final String META_DATA_SDK_ZALO = "com.vng.zalo.sdk.APP_ID";
 
+  private Activity activity;
+  private Context context;
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
     // Register a method channel that the Flutter app may invoke
     MethodChannel channel = new MethodChannel(binding.getBinaryMessenger(), "flutter.native/channelPayOrder");
     // Handle method calls (onMethodCall())
     channel.setMethodCallHandler(this);
-    ZaloPaySDK.init(2553, Environment.SANDBOX);
+    context = binding.getApplicationContext();
   }
 
   @Override
   public void onAttachedToActivity(@NonNull ActivityPluginBinding binding) {
-    mActivity = binding.getActivity();
+    activity = binding.getActivity();
     // Listen for new intents (notification clicked)
     binding.addOnNewIntentListener(this);
+    Log.d(FlutterZaloSdkPlugin.class.getSimpleName(), "App Id Zalo: "+getAppIdZalo());
+    ZaloPaySDK.init(getAppIdZalo(), Environment.SANDBOX);
   }
+
+  public Bundle getMetaDataFromApplication(Context context) throws PackageManager.NameNotFoundException {
+    return context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA).metaData;
+  }
+
+  public Bundle getMetaDataFromActivity(Activity activity) throws PackageManager.NameNotFoundException {
+    return context.getPackageManager().getActivityInfo(activity.getComponentName(), PackageManager.GET_META_DATA).metaData;
+  }
+
+  public int getAppIdZalo(){
+    try {
+
+      Bundle bundleApplication = getMetaDataFromApplication(context);
+      Bundle bundleActivity = getMetaDataFromActivity(activity);
+
+      if (bundleApplication.containsKey(META_DATA_SDK_ZALO)) {
+        return bundleApplication.getInt(META_DATA_SDK_ZALO);
+      } else if (bundleActivity.containsKey(META_DATA_SDK_ZALO)) {
+        return bundleActivity.getInt(META_DATA_SDK_ZALO);
+      }
+    } catch (PackageManager.NameNotFoundException e) {
+      e.printStackTrace();
+    }
+    Toast.makeText(activity, R.string.not_find_app_id, Toast.LENGTH_LONG).show();
+    throw new IllegalStateException(context.getString(R.string.not_find_app_id));
+  }
+
 
   @Override
   public boolean onNewIntent(Intent intent) {
@@ -55,7 +97,7 @@ public class FlutterZaloSdkPlugin implements FlutterPlugin, ActivityAware, Metho
         final String tagError = "[onPaymentError]";
         final String tagCanel = "[onPaymentCancel]";
         String token = (String) poCall.argument("zptoken");
-        ZaloPaySDK.getInstance().payOrder(mActivity, token, "demozpdk://app", new PayOrderListener() {
+        ZaloPaySDK.getInstance().payOrder(activity, token, "demozpdk://app", new PayOrderListener() {
 
           public void onPaymentCanceled(@Nullable String zpTransToken, @Nullable String appTransID) {
             Log.d(tagCanel, String.format("[TransactionId]: %s, [appTransID]: %s", zpTransToken, appTransID));
