@@ -11,7 +11,10 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: AppConfig.appName,
       theme: myTheme,
-      home: Dashboard(title: AppConfig.appName, version: AppConfig.version,),
+      home: Dashboard(
+        title: AppConfig.appName,
+        version: AppConfig.version,
+      ),
       debugShowCheckedModeBanner: false,
     );
   }

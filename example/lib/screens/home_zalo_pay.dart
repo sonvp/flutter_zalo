@@ -15,8 +15,10 @@ class HomeZaloPay extends StatefulWidget {
 }
 
 class _HomeZaloPayState extends State<HomeZaloPay> {
-  static const EventChannel eventChannel = EventChannel('flutter.native/eventPayOrder');
-  static const MethodChannel platform = MethodChannel('flutter.native/channelPayOrder');
+  static const EventChannel eventChannel =
+      EventChannel('flutter.native/eventPayOrder');
+  static const MethodChannel platform =
+      MethodChannel('flutter.native/channelPayOrder');
   final textStyle = TextStyle(color: Colors.black54);
   final valueStyle = TextStyle(
       color: AppColor.accentColor, fontSize: 18.0, fontWeight: FontWeight.w400);
@@ -38,9 +40,9 @@ class _HomeZaloPayState extends State<HomeZaloPay> {
     setState(() {
       if (res["errorCode"] == 1) {
         payResult = "Thanh toán thành công";
-      } else if  (res["errorCode"] == 4) {
+      } else if (res["errorCode"] == 4) {
         payResult = "User hủy thanh toán";
-      }else {
+      } else {
         payResult = "Giao dịch thất bại";
       }
     });

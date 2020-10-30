@@ -24,13 +24,14 @@ String getAppTransId() {
 
   transIdDefault += 1;
   var timeString = formatDateTime(DateTime.now(), "yyMMdd_hhmmss");
-  return sprintf("%s%06d",[timeString, transIdDefault]);
+  return sprintf("%s%06d", [timeString, transIdDefault]);
 }
 
 String getBankCode() => "zalopayapp";
-String getDescription(String apptransid) => "Merchant Demo thanh toán cho đơn hàng  #$apptransid";
+String getDescription(String apptransid) =>
+    "Merchant Demo thanh toán cho đơn hàng  #$apptransid";
 
 String getMacCreateOrder(String data) {
-  var hmac =  new Hmac(sha256, utf8.encode(ZaloPayConfig.key1));
+  var hmac = new Hmac(sha256, utf8.encode(ZaloPayConfig.key1));
   return hmac.convert(utf8.encode(data)).toString();
 }

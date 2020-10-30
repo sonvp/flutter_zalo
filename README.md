@@ -1,4 +1,4 @@
-# flutter_zalo_sdk
+# flutter_zalopay_sdk
 
 A Zalo SDK.
 
@@ -6,7 +6,7 @@ A Zalo SDK.
 
 NOTE: Get your appid from Zalo in order for ZaloPaySDK to work. In this readme we will use appId = 2553, as this is demo appID from Zalo
 
-# flutter_zalo
+# flutter_zalopay_sdk
 
 A Flutter Wrapper for ease of interacting with ZaloPaySDK. 
 
@@ -73,7 +73,7 @@ https://docs.zalopay.vn/docs/apptoapp/api.html#ngu-canh-su-dung
 	</array>
 ```
 
-* Add the following to your ``AppDelegate.swift``` file
+* Add the following to your ```AppDelegate.swift``` file
 
 ```swift
 ...
@@ -90,5 +90,14 @@ override func application(_ app: UIApplication, open url: URL, options: [UIAppli
   ZaloPaySDK.sharedInstance()?.initWithAppId(2553, uriScheme: "demozpdk://app", environment: .sandbox)
 ```
 
+### How To Use
 
+Call ```FlutterZaloPaySDK.payOrder(zpToken: String)``` to use. Latest status of the order can be accesed through ```FlutterZaloPaySDK.currentStatus```. Default will be null
+```
+xml
+Applicable status string returned:
+"Thanh toán thành công"
+"User hủy thanh toán"
+"Giao dịch thất bại"
+```
 

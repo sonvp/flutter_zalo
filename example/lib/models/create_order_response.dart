@@ -6,9 +6,15 @@ class CreateOrderResponse {
   final int subreturncode;
   final String subreturnmessage;
   final String ordertoken;
-  
+
   CreateOrderResponse(
-      {this.zptranstoken, this.orderurl, this.returncode, this.returnmessage, this.subreturncode, this.subreturnmessage, this.ordertoken});
+      {this.zptranstoken,
+      this.orderurl,
+      this.returncode,
+      this.returnmessage,
+      this.subreturncode,
+      this.subreturnmessage,
+      this.ordertoken});
 
   factory CreateOrderResponse.fromJson(Map<String, dynamic> json) {
     return CreateOrderResponse(
