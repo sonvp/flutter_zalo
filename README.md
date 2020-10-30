@@ -1,6 +1,8 @@
 # flutter_zalopay_sdk
 
-A Zalo SDK.
+A Zalo Pay SDK .
+
+[![pub package](https://img.shields.io/pub/v/flutter_zalopay_sdk.svg)](https://pub.dev/packages/flutter_zalopay_sdk)
 
 ## Getting Started
 
@@ -90,14 +92,14 @@ override func application(_ app: UIApplication, open url: URL, options: [UIAppli
 * In didFinishLaunchingWithOptions, add the line:
 
 ```swift 
-  ZaloPaySDK.sharedInstance()?.initWithAppId(2553, uriScheme: "demozpdk://app", environment: .sandbox)
+  ZaloPaySDK.sharedInstance()?.initWithAppId(2553, uriScheme: "demozpdk://app", environment: .sandbox) ///NOTE: If you want to use production, replace .sandbox with .production
 ```
 
 ### How To Use
 
 Call ```FlutterZaloPaySDK.payOrder(zpToken: String)``` to use. Latest status of the order can be accesed through ```FlutterZaloPaySDK.currentStatus```. Default will be null
 ```
-xml
+
 Applicable status string returned:
 "Thanh toán thành công"
 "User hủy thanh toán"
