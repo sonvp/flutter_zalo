@@ -11,7 +11,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  intl: ^0.16.1
+  http: ^0.12.0+4
+  sprintf: ^4.0.2
+  crypto: ^2.1.5
   flutter_zalopay_sdk:
     # When depending on this package from a real application you should use:
     #   flutter_zalo_sdk: ^x.y.z
