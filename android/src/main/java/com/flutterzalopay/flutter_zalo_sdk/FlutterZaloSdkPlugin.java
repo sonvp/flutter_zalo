@@ -33,7 +33,8 @@ import vn.zalopay.sdk.listeners.PayOrderListener;
 /** FlutterZaloSdkPlugin */
 
 public class FlutterZaloSdkPlugin implements FlutterPlugin, ActivityAware, MethodCallHandler, NewIntentListener {
-  private final String META_DATA_SDK_ZALO = "com.vng.zalo.sdk.APP_ID";
+  private final String META_DATA_SDK_ZALO_APP_ID = "com.vng.zalo.sdk.APP_ID";
+  private final String META_DATA_SDK_ZALO_ENVIRONMENT = "com.vng.zalo.sdk.ENVIRONMENT";
 
   private Activity activity;
   private Context context;
@@ -52,7 +53,8 @@ public class FlutterZaloSdkPlugin implements FlutterPlugin, ActivityAware, Metho
     // Listen for new intents (notification clicked)
     binding.addOnNewIntentListener(this);
     Log.d(FlutterZaloSdkPlugin.class.getSimpleName(), "App Id Zalo: "+getAppIdZalo());
-    ZaloPaySDK.init(getAppIdZalo(), Environment.SANDBOX);
+    Log.d(FlutterZaloSdkPlugin.class.getSimpleName(), "Environment: "+getAppEnvironment());
+    ZaloPaySDK.init(getAppIdZalo(), getAppEnvironment());
   }
 
   public Bundle getMetaDataFromApplication(Context context) throws PackageManager.NameNotFoundException {
@@ -69,10 +71,10 @@ public class FlutterZaloSdkPlugin implements FlutterPlugin, ActivityAware, Metho
       Bundle bundleApplication = getMetaDataFromApplication(context);
       Bundle bundleActivity = getMetaDataFromActivity(activity);
 
-      if (bundleApplication.containsKey(META_DATA_SDK_ZALO)) {
-        return bundleApplication.getInt(META_DATA_SDK_ZALO);
-      } else if (bundleActivity.containsKey(META_DATA_SDK_ZALO)) {
-        return bundleActivity.getInt(META_DATA_SDK_ZALO);
+      if (bundleApplication.containsKey(META_DATA_SDK_ZALO_APP_ID)) {
+        return bundleApplication.getInt(META_DATA_SDK_ZALO_APP_ID);
+      } else if (bundleActivity.containsKey(META_DATA_SDK_ZALO_APP_ID)) {
+        return bundleActivity.getInt(META_DATA_SDK_ZALO_APP_ID);
       }
     } catch (PackageManager.NameNotFoundException e) {
       e.printStackTrace();
@@ -81,6 +83,35 @@ public class FlutterZaloSdkPlugin implements FlutterPlugin, ActivityAware, Metho
     throw new IllegalStateException(context.getString(R.string.not_find_app_id));
   }
 
+  public Environment getAppEnvironment(){
+    try {
+
+      Bundle bundleApplication = getMetaDataFromApplication(context);
+      Bundle bundleActivity = getMetaDataFromActivity(activity);
+
+      if (bundleApplication.containsKey(META_DATA_SDK_ZALO_ENVIRONMENT)) {
+        String environment=bundleApplication.getString(META_DATA_SDK_ZALO_ENVIRONMENT);
+        return getAppEnvironment(environment);
+      } else if (bundleActivity.containsKey(META_DATA_SDK_ZALO_ENVIRONMENT)) {
+        String environment=bundleActivity.getString(META_DATA_SDK_ZALO_ENVIRONMENT);
+        return getAppEnvironment(environment);
+      }
+    } catch (PackageManager.NameNotFoundException e) {
+      e.printStackTrace();
+    }
+    return Environment.SANDBOX;
+  }
+
+  public Environment getAppEnvironment( String environment){
+    if (environment!=null) {
+      if(environment.equals(Environment.SANDBOX.name())){
+        return Environment.SANDBOX;
+      }else if(environment.equals(Environment.PRODUCTION.name())){
+        return Environment.PRODUCTION;
+      }
+    }
+    return Environment.SANDBOX;
+  }
 
   @Override
   public boolean onNewIntent(Intent intent) {

@@ -75,6 +75,7 @@ class _HomeZaloPayState extends State<HomeZaloPay> {
               if (result != null) {
                 Navigator.pop(context);
                 zpTransToken = result.zptranstoken;
+                print("zpTransToken $zpTransToken'.");
                 setState(() {
                   zpTransToken = result.zptranstoken;
                   showResult = true;
