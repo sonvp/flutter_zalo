@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class AppColor {
   /// Fill Color
   static const Color primaryColor = Colors.deepOrange;
-  static const Color accentColor =  const Color(0xFF168EED);
+  static const Color accentColor = const Color(0xFF168EED);
 
   /// Text Color
   static const Color textPrimaryColor = Colors.deepOrange;
@@ -13,8 +13,8 @@ class AppColor {
 
 /// Text Theme for app
 TextTheme _textTheme = TextTheme(
-    bodyText2: TextStyle(color: AppColor.textPrimaryColor, fontSize: 18.0),
-    headline6: TextStyle(color: Colors.white),
+  bodyText2: TextStyle(color: AppColor.textPrimaryColor, fontSize: 18.0),
+  headline6: TextStyle(color: Colors.white),
 );
 
 /// Theme Data for App
@@ -26,6 +26,3 @@ ThemeData myTheme = ThemeData(
   accentColor: AppColor.accentColor,
   // scaffoldBackgroundColor: AppColor.primaryColor,
 );
-
-
-

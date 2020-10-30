@@ -1,7 +1,7 @@
 name: flutter_zalopay_sdk
 description: A plugin for Zalo Pay. Supports iOS and Android.
 version: 0.0.1
-author:
+authors:
   - Son Vo <ngocson160391@gmail.com>
   - Ha Tran <tranvietha.2809@gmail.com>
 homepage: https://github.com/sonvp/flutter_zalo
