@@ -33,6 +33,9 @@ https://docs.zalopay.vn/docs/apptoapp/api.html#ngu-canh-su-dung
    <meta-data
             android:name="com.vng.zalo.sdk.APP_ID"
             android:value="2553" />
+   <meta-data
+            android:name="com.vng.zalo.sdk.ENVIRONMENT"
+            android:value="SANDBOX" /> // OR value="PRODUCTION"
 </activity>
            
 ```
