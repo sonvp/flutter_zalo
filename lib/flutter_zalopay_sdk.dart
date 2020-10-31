@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/services.dart';
 
+part 'flutter_zalopay_payment_status.dart';
+
 class FlutterZaloPaySdk {
   static const MethodChannel _channel =
       const MethodChannel('flutter.native/channelPayOrder');
@@ -16,11 +18,11 @@ class FlutterZaloPaySdk {
     print("errorCode: " + res["errorCode"].toString());
     String payResult;
     if (res["errorCode"] == 1) {
-      payResult = "Thanh toán thành công";
+      payResult = FlutterZaloPaymentStatus.SUCCESS;
     } else if (res["errorCode"] == 4) {
-      payResult = "User hủy thanh toán";
+      payResult = FlutterZaloPaymentStatus.CANCELLED;
     } else {
-      payResult = "Giao dịch thất bại";
+      payResult = FlutterZaloPaymentStatus.FAILED;
     }
     currentStatus = payResult;
     print("CurrentStatus: $currentStatus");
@@ -28,7 +30,7 @@ class FlutterZaloPaySdk {
 
   static void _onError(Object error) {
     print("_onError: '$error'.");
-    String payResult = "Giao dịch thất bại";
+    String payResult = FlutterZaloPaymentStatus.CANCELLED;
     currentStatus = payResult;
   }
 

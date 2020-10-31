@@ -98,11 +98,13 @@ override func application(_ app: UIApplication, open url: URL, options: [UIAppli
 ### How To Use
 
 Call ```FlutterZaloPaySDK.payOrder(zpToken: String)``` to use. Latest status of the order can be accesed through ```FlutterZaloPaySDK.currentStatus```. Default will be null
-```
 
-Applicable status string returned:
-"Thanh toán thành công"
-"User hủy thanh toán"
-"Giao dịch thất bại"
+Applicable Staus can be found in class ```FlutterZaloPaymentStatus```
+
+```
+FlutterZaloPaymentStatus.PROCESSING
+FlutterZaloPaymentStatus.FAILED
+FlutterZaloPaymentStatus.SUCCESS
+FlutterZaloPaymentStatus.CANCELLED
 ```
 

@@ -1,6 +1,6 @@
 name: flutter_zalopay_sdk
-description: A plugin for Zalo Pay. Supports iOS and Android.
-version: 0.0.1+3
+description: A plugin for ZaloPay App To App Purchase. This plugin allows you to open ZaloPay app and receive status of the order, then back to your app. Supports iOS and Android.
+version: 0.0.1+4
 authors:
   - Son Vo <ngocson160391@gmail.com>
   - Ha Tran <tranvietha.2809@gmail.com>
