@@ -3,7 +3,7 @@
 # Run `pod lib lint flutter_zalo_sdk.podspec' to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'flutter_zalo_sdk'
+  s.name             = 'flutter_zalopay_sdk'
   s.version          = '0.0.1'
   s.summary          = 'A Zalo SDK.'
   s.description      = <<-DESC
