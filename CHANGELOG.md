@@ -19,3 +19,10 @@ Update CHANGELOD.md
 Add Payment Status Class
 Update README.md
 Update example
+
+## 0.0.1+5
+
+Apparently something went wrong in iOS naming so we fixed it
+
+## 0.0.1+6
+Add a Payment Status Stream for ease of interacting with package
