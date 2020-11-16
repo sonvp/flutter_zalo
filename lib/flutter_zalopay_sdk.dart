@@ -11,7 +11,7 @@ class FlutterZaloPaySdk {
   static const EventChannel _eventChannel =
       const EventChannel('flutter.native/eventPayOrder');
   static String currentStatus;
-  static StreamController _currentStatusStreamController = StreamController<String>();
+  static StreamController _currentStatusStreamController = StreamController<String>.broadcast();
   static Stream<String> get currentStatusStream => _currentStatusStreamController.stream;
   static void _onEvent(Object event) {
     print("_onEvent: '$event'.");

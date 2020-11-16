@@ -140,6 +140,7 @@ class _HomeZaloPayState extends State<HomeZaloPay> {
               //final String result = await platform.invokeMethod('payOrder', {"zptoken": zpToken});
               await FlutterZaloPaySdk.payOrder(zpToken: zpToken);
               response = FlutterZaloPaySdk.currentStatus;
+              FlutterZaloPaySdk.currentStatusStream.listen((event) => print(event));
               print("payOrder Result: '$response'.");
             } on PlatformException catch (e) {
               print("Failed to Invoke: '${e.message}'.");

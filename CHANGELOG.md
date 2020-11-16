@@ -26,3 +26,9 @@ Apparently something went wrong in iOS naming so we fixed it
 
 ## 0.0.1+6
 Add a Payment Status Stream for ease of interacting with package
+
+## 0.0.1+7
+Minor fix to Stream
+
+## 0.0.1+8
+Minor fix to FlutterZaloPaymentStatus.SUCCESS
