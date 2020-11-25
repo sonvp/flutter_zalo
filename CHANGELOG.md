@@ -32,3 +32,6 @@ Minor fix to Stream
 
 ## 0.0.1+8
 Minor fix to FlutterZaloPaymentStatus.SUCCESS
+
+## 0.0.1+9
+Remove redundant Stream

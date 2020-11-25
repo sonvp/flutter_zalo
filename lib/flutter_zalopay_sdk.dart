@@ -11,8 +11,6 @@ class FlutterZaloPaySdk {
   static const EventChannel _eventChannel =
       const EventChannel('flutter.native/eventPayOrder');
   static String currentStatus;
-  static StreamController _currentStatusStreamController = StreamController<String>.broadcast();
-  static Stream<String> get currentStatusStream => _currentStatusStreamController.stream;
   static void _onEvent(Object event) {
     print("_onEvent: '$event'.");
     var res = Map<String, dynamic>.from(event);
@@ -26,7 +24,6 @@ class FlutterZaloPaySdk {
       payResult = FlutterZaloPaymentStatus.FAILED;
     }
     currentStatus = payResult;
-    _currentStatusStreamController.add(currentStatus);
     print("CurrentStatus: $currentStatus");
   }
 
@@ -34,13 +31,7 @@ class FlutterZaloPaySdk {
     print("_onError: '$error'.");
     String payResult = FlutterZaloPaymentStatus.CANCELLED;
     currentStatus = payResult;
-    _currentStatusStreamController.add(currentStatus);
   }
-
-  // static Future<String> get platformVersion async {
-  //   final String version = await _channel.invokeMethod('getPlatformVersion');
-  //   return version;
-  // }
 
   static Future<void> payOrder({String zpToken}) async {
     try {
@@ -54,7 +45,6 @@ class FlutterZaloPaySdk {
             await _channel.invokeMethod('payOrder', {"zptoken": zpToken});
         print("payOrder Result: '$result'.");
         currentStatus = result;
-        _currentStatusStreamController.add(currentStatus);
       }
     } on PlatformException catch (e) {
       print("Failed to Invoke: '${e.message}'.");
