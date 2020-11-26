@@ -10,7 +10,7 @@ class FlutterZaloPaySdk {
 
   static const EventChannel _eventChannel =
       const EventChannel('flutter.native/eventPayOrder');
-  static String currentStatus;
+  static String currentStatus = '';
   static void _onEvent(Object event) {
     print("_onEvent: '$event'.");
     var res = Map<String, dynamic>.from(event);
@@ -24,7 +24,6 @@ class FlutterZaloPaySdk {
       payResult = FlutterZaloPaymentStatus.FAILED;
     }
     currentStatus = payResult;
-    print("CurrentStatus: $currentStatus");
   }
 
   static void _onError(Object error) {
@@ -33,16 +32,39 @@ class FlutterZaloPaySdk {
     currentStatus = payResult;
   }
 
-  static Future<void> payOrder({String zpToken}) async {
+//  static Future<void> payOrder({String zpToken,Function onEvent, Function onError}) async {
+//    try {
+//      if (Platform.isIOS) {
+//        _eventChannel
+//            .receiveBroadcastStream()
+//            .listen(onEvent, onError: _onError);
+//        currentStatus = await _channel.invokeMethod('payOrder', {"zptoken": zpToken});
+//      } else {
+//        final String result =
+//            await _channel.invokeMethod('payOrder', {"zptoken": zpToken});
+//        print("payOrder Result: '$result'.");
+//        currentStatus = result;
+//      }
+//    } on PlatformException catch (e) {
+//      print("Failed to Invoke: '${e.message}'.");
+//      throw PlatformException(
+//          code: e.code, message: e.message, details: e.details);
+//    }
+//  }
+
+
+  static Future<void> payOrder({String zpToken,Function(dynamic event) function}) async {
     try {
       if (Platform.isIOS) {
-        await _channel.invokeMethod('payOrder', {"zptoken": zpToken});
         _eventChannel
             .receiveBroadcastStream()
-            .listen(_onEvent, onError: _onError);
+            .listen(function, onError: _onError);
+        await _channel.invokeMethod('payOrder', {"zptoken": zpToken});
+
       } else {
         final String result =
-            await _channel.invokeMethod('payOrder', {"zptoken": zpToken});
+        await _channel.invokeMethod('payOrder', {"zptoken": zpToken});
+        //function(result);
         print("payOrder Result: '$result'.");
         currentStatus = result;
       }
@@ -52,4 +74,6 @@ class FlutterZaloPaySdk {
           code: e.code, message: e.message, details: e.details);
     }
   }
+
+
 }

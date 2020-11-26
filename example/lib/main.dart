@@ -135,20 +135,31 @@ class _HomeZaloPayState extends State<HomeZaloPay> {
         visible: showResult,
         child: GestureDetector(
           onTap: () async {
-            String response = "";
-            try {
-              //final String result = await platform.invokeMethod('payOrder', {"zptoken": zpToken});
-              await FlutterZaloPaySdk.payOrder(zpToken: zpToken);
-              response = FlutterZaloPaySdk.currentStatus;
-              FlutterZaloPaySdk.currentStatusStream.listen((event) => print(event));
-              print("payOrder Result: '$response'.");
-            } on PlatformException catch (e) {
-              print("Failed to Invoke: '${e.message}'.");
-              response = "Thanh toán thất bại";
-            }
-            setState(() {
-              payResult = response;
+             await FlutterZaloPaySdk.payOrder(zpToken: zpToken,function: (dynamic event) {
+              if(event is String){
+                String payResult=event;
+              }else{
+                var res = Map<String, dynamic>.from(event);
+                print("errorCode 5555: " + res["errorCode"].toString());
+                if (res["errorCode"] == 1) {
+                  setState(() {
+                    payResult = "11111111";
+                    print("payResult: " + payResult.toString());
+                  });
+                } else if (res["errorCode"] == 4) {
+                  setState(() {
+                    payResult ="2222222222";
+                    print("payResult: " + payResult.toString());
+                  });
+                } else {
+                  setState(() {
+                    payResult = "3333333";
+                    print("payResult: " + payResult.toString());
+                  });
+                }
+              }
             });
+
           },
           child: Container(
               height: 50.0,

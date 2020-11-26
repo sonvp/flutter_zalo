@@ -35,3 +35,6 @@ Minor fix to FlutterZaloPaymentStatus.SUCCESS
 
 ## 0.0.1+9
 Remove redundant Stream
+
+## 0.0.1+10
+Add stream for iOS

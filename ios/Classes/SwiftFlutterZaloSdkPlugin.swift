@@ -8,23 +8,18 @@ class StreamHandler: NSObject, FlutterStreamHandler, ZPPaymentDelegate{
     let PAYMENTCANCELED = 4
     
     func paymentDidSucceeded(_ transactionId: String!, zpTranstoken: String!, appTransId: String!) {
-        //Handle Success
-        print("Success payment")
         guard let eventSink = SwiftFlutterZaloSdkPlugin.eventSink else {
           return
         }
         eventSink(["errorCode": PAYMENTCOMPLETE, "zpTranstoken": zpTranstoken ?? "", "transactionId": transactionId ?? "", "appTransId": appTransId ?? ""])
     }
     func paymentDidCanceled(_ zpTranstoken: String!, appTransId: String!) {
-        //Handle Canceled
-        print("Cancelled payment")
         guard let eventSink = SwiftFlutterZaloSdkPlugin.eventSink else {
           return
         }
         eventSink(["errorCode": PAYMENTCANCELED, "zpTranstoken": zpTranstoken ?? "", "appTransId": appTransId ?? ""])
     }
     func paymentDidError(_ errorCode: ZPPaymentErrorCode, zpTranstoken: String!, appTransId: String!) {
-        print("Error Payment")
         guard let eventSink = SwiftFlutterZaloSdkPlugin.eventSink else {
           return
         }
@@ -39,16 +34,14 @@ class StreamHandler: NSObject, FlutterStreamHandler, ZPPaymentDelegate{
     func onCancel(withArguments arguments: Any?) -> FlutterError? {
         return nil
     }
-
-    
 }
+
 public class SwiftFlutterZaloSdkPlugin: NSObject, FlutterPlugin {
 
     let PAYMENTCOMPLETE = 1
     let PAYMENTERROR = -1
     let PAYMENTCANCELED = 4
-    static var eventSink: FlutterEventSink?
-    
+    static var eventSink : FlutterEventSink?
     var streamHandler = StreamHandler()
     
   public static func register(with registrar: FlutterPluginRegistrar) {
@@ -65,7 +58,7 @@ public class SwiftFlutterZaloSdkPlugin: NSObject, FlutterPlugin {
         let  _zptoken = args?["zptoken"] as? String
         ZaloPaySDK.sharedInstance()?.paymentDelegate = streamHandler
         ZaloPaySDK.sharedInstance()?.payOrder(_zptoken)
-        //result("Processing...")
+        result("Processing...")
     }
   }
 
