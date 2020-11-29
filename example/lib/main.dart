@@ -135,31 +135,11 @@ class _HomeZaloPayState extends State<HomeZaloPay> {
         visible: showResult,
         child: GestureDetector(
           onTap: () async {
-             await FlutterZaloPaySdk.payOrder(zpToken: zpToken,function: (dynamic event) {
-              if(event is String){
-                String payResult=event;
-              }else{
-                var res = Map<String, dynamic>.from(event);
-                print("errorCode 5555: " + res["errorCode"].toString());
-                if (res["errorCode"] == 1) {
-                  setState(() {
-                    payResult = "11111111";
-                    print("payResult: " + payResult.toString());
-                  });
-                } else if (res["errorCode"] == 4) {
-                  setState(() {
-                    payResult ="2222222222";
-                    print("payResult: " + payResult.toString());
-                  });
-                } else {
-                  setState(() {
-                    payResult = "3333333";
-                    print("payResult: " + payResult.toString());
-                  });
-                }
-              }
+            FlutterZaloPaySdk.payOrder(zpToken: zpToken).listen((event) {
+              setState(() {
+                payResult = event;
+              });
             });
-
           },
           child: Container(
               height: 50.0,

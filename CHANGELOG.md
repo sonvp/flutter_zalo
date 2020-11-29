@@ -38,3 +38,8 @@ Remove redundant Stream
 
 ## 0.0.1+10
 Add stream for iOS
+
+## 0.1.0
+
+***Breaking Changes***
+payOrder() now return a Stream with predefined Strings found in FlutterZaloPaymentStatus
