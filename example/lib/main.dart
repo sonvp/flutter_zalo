@@ -137,7 +137,20 @@ class _HomeZaloPayState extends State<HomeZaloPay> {
           onTap: () async {
             FlutterZaloPaySdk.payOrder(zpToken: zpToken).listen((event) {
               setState(() {
-                payResult = event;
+                switch (event) {
+                  case FlutterZaloPayStatus.cancelled:
+                    payResult = "User Huỷ Thanh Toán";
+                    break;
+                  case FlutterZaloPayStatus.success:
+                    payResult = "Thanh toán thành công";
+                    break;
+                  case FlutterZaloPayStatus.failed:
+                    payResult = "Thanh toán thất bại";
+                    break;
+                  default:
+                    payResult = "Thanh toán thất bại";
+                    break;
+                }
               });
             });
           },

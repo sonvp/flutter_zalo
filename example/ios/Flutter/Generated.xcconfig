@@ -1,7 +1,7 @@
 // This is a generated file; do not edit or check into version control.
 FLUTTER_ROOT=/Users/itsoft/Documents/flutter
-FLUTTER_APPLICATION_PATH=/Users/itsoft/Downloads/flutter_zalopay_sdk/example
-FLUTTER_TARGET=/Users/itsoft/Downloads/flutter_zalopay_sdk/example/lib/main.dart
+FLUTTER_APPLICATION_PATH=/Users/itsoft/Documents/FlutterProject/flutter_zalopay_sdk/example
+FLUTTER_TARGET=/Users/itsoft/Documents/FlutterProject/flutter_zalopay_sdk/example/lib/main.dart
 FLUTTER_BUILD_DIR=build
 SYMROOT=${SOURCE_ROOT}/../build/ios
 OTHER_LDFLAGS=$(inherited) -framework Flutter

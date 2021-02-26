@@ -11,7 +11,7 @@ class FlutterZaloPaySdk {
   static const EventChannel _eventChannel =
       const EventChannel('flutter.native/eventPayOrder');
 
-  static Stream<String> payOrder({String zpToken}) async*{
+  static Stream<FlutterZaloPayStatus> payOrder({String zpToken}) async*{
     if (Platform.isIOS) {
       _eventChannel.receiveBroadcastStream().listen((event) { });
       await _channel.invokeMethod('payOrder', {"zptoken": zpToken});
@@ -19,17 +19,30 @@ class FlutterZaloPaySdk {
       await for (var event in _eventStream) {
         var res = Map<String, dynamic>.from(event);
         if (res["errorCode"] == 1) {
-          yield FlutterZaloPaymentStatus.SUCCESS;
+          yield FlutterZaloPayStatus.success;
         } else if (res["errorCode"] == 4) {
-          yield FlutterZaloPaymentStatus.CANCELLED;
+          yield FlutterZaloPayStatus.cancelled;
         } else {
-          yield FlutterZaloPaymentStatus.FAILED;
+          yield FlutterZaloPayStatus.failed;
         }
       }
     } else{
       final String result =
       await _channel.invokeMethod('payOrder', {"zptoken": zpToken});
-      yield result;
+      switch(result) {
+        case "User hủy thanh toán":
+          yield FlutterZaloPayStatus.cancelled;
+          break;
+        case "Thanh Toán Thành Công":
+          yield FlutterZaloPayStatus.success;
+          break;
+        case "Giao dịch thất bại":
+          yield FlutterZaloPayStatus.failed;
+          break;
+        default:
+          yield FlutterZaloPayStatus.failed;
+          break;
+      }
     }
   }
 }
