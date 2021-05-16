@@ -43,3 +43,10 @@ Add stream for iOS
 
 ***Breaking Changes***
 payOrder() now return a Stream with predefined Strings found in FlutterZaloPaymentStatus
+
+## 0.1.1
+***Breaking Changes***
+payOrder() now return a Stream with enum FlutterZaloPaymentStatus
+
+## 0.1.2
+Migrate to null-safety
