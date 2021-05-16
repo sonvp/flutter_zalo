@@ -37,7 +37,7 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Scaffold(
-        resizeToAvoidBottomPadding: true,
+        resizeToAvoidBottomInset: true,
         appBar: AppBar(
           elevation: 0,
           // backgroundColor: Colors.transparent,
