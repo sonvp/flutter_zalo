@@ -53,3 +53,6 @@ Migrate to null-safety
 
 ## 0.1.3
 Revert flutter 1.0
+
+## 0.1.4
+Revert flutter 1.0

@@ -12,7 +12,7 @@ class FlutterZaloPaySdk {
   static const EventChannel _eventChannel =
       const EventChannel('flutter.native/eventPayOrder');
 
-  static Stream<FlutterZaloPayStatus> payOrder({String zpToken}) async*{
+  static Stream<FlutterZaloPayStatus> payOrder({required String zpToken}) async*{
     if (Platform.isIOS) {
       _eventChannel.receiveBroadcastStream().listen((event) { });
       await _channel.invokeMethod('payOrder', {"zptoken": zpToken});
