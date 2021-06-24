@@ -37,6 +37,7 @@ public class SwiftFlutterZaloSdkPlugin: NSObject, FlutterPlugin, ZPPaymentDelega
           let  _zptoken = args?["zptoken"] as? String
           ZaloPaySDK.sharedInstance()?.paymentDelegate = self
           ZaloPaySDK.sharedInstance()?.payOrder(_zptoken)
+          result("Processing...")
       }
     }
     
