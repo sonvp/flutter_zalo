@@ -50,3 +50,6 @@ payOrder() now return a Stream with enum FlutterZaloPaymentStatus
 
 ## 0.1.2
 Migrate to null-safety
+
+## 0.1.3
+Revert flutter 1.0
