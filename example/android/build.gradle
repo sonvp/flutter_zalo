@@ -2,13 +2,10 @@ buildscript {
     repositories {
         google()
         jcenter()
-        flatDir {
-            dirs 'libs' //this way we can find the .aar file in libs folder
-        }
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath 'com.android.tools.build:gradle:4.2.2'
     }
 }
 
@@ -16,9 +13,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        flatDir {
-            dirs 'libs' //this way we can find the .aar file in libs folder
-        }
     }
 }
 

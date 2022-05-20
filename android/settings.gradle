@@ -1,1 +1,2 @@
 rootProject.name = 'flutter_zalo_sdk'
+include ':zpdk-release'
