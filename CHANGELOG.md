@@ -59,3 +59,6 @@ Revert flutter 1.0
 
 ## 0.1.5
 Add Uri Scheme
+
+## 0.1.7
+fix can't build app android when use gradle:4+

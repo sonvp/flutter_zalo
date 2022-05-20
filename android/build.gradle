@@ -5,6 +5,9 @@ buildscript {
     repositories {
         google()
         jcenter()
+        flatDir {
+            dirs 'libs' //this way we can find the .aar file in libs folder
+        }
     }
 
     dependencies {
@@ -16,13 +19,16 @@ rootProject.allprojects {
     repositories {
         google()
         jcenter()
+        flatDir {
+            dirs 'libs' //this way we can find the .aar file in libs folder
+        }
     }
 }
 
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 31
 
     defaultConfig {
         minSdkVersion 16
@@ -33,8 +39,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation files('libs/zpdk-release.aar')
-
+    compileOnly files('libs/zpdk-release.aar')
 }
 
