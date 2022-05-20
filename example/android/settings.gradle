@@ -1,6 +1,4 @@
-include ':zpdk-release'
 include ':app'
-
 def localPropertiesFile = new File(rootProject.projectDir, "local.properties")
 def properties = new Properties()
 
