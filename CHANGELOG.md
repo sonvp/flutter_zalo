@@ -62,3 +62,6 @@ Add Uri Scheme
 
 ## 0.1.7
 fix can't build app android when use gradle:4+
+
+## 0.1.8
+android can't open zalopay when targetSdkVersion 30
