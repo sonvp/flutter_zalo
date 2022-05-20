@@ -56,3 +56,6 @@ Revert flutter 1.0
 
 ## 0.1.4
 Revert flutter 1.0
+
+## 0.1.5
+Add Uri Scheme

@@ -34,6 +34,7 @@ import vn.zalopay.sdk.listeners.PayOrderListener;
 
 public class FlutterZaloSdkPlugin implements FlutterPlugin, ActivityAware, MethodCallHandler, NewIntentListener {
   private final String META_DATA_SDK_ZALO_APP_ID = "com.vng.zalo.sdk.APP_ID";
+  private final String META_DATA_SDK_ZALO_URI_SCHEME = "com.vng.zalo.sdk.URI_SCHEME";
   private final String META_DATA_SDK_ZALO_ENVIRONMENT = "com.vng.zalo.sdk.ENVIRONMENT";
 
   private Activity activity;
@@ -54,6 +55,7 @@ public class FlutterZaloSdkPlugin implements FlutterPlugin, ActivityAware, Metho
     binding.addOnNewIntentListener(this);
     Log.d(FlutterZaloSdkPlugin.class.getSimpleName(), "App Id Zalo: "+getAppIdZalo());
     Log.d(FlutterZaloSdkPlugin.class.getSimpleName(), "Environment: "+getAppEnvironment());
+    Log.d(FlutterZaloSdkPlugin.class.getSimpleName(), "Uri Scheme: "+getAppUriScheme());
     ZaloPaySDK.init(getAppIdZalo(), getAppEnvironment());
   }
 
@@ -81,6 +83,24 @@ public class FlutterZaloSdkPlugin implements FlutterPlugin, ActivityAware, Metho
     }
     Toast.makeText(activity, R.string.not_find_app_id, Toast.LENGTH_LONG).show();
     throw new IllegalStateException(context.getString(R.string.not_find_app_id));
+  }
+
+  public String getAppUriScheme(){
+    try {
+
+      Bundle bundleApplication = getMetaDataFromApplication(context);
+      Bundle bundleActivity = getMetaDataFromActivity(activity);
+
+      if (bundleApplication.containsKey(META_DATA_SDK_ZALO_URI_SCHEME)) {
+        return bundleApplication.getString(META_DATA_SDK_ZALO_URI_SCHEME);
+      } else if (bundleActivity.containsKey(META_DATA_SDK_ZALO_URI_SCHEME)) {
+        return bundleActivity.getString(META_DATA_SDK_ZALO_URI_SCHEME);
+      }
+    } catch (PackageManager.NameNotFoundException e) {
+      e.printStackTrace();
+    }
+    Toast.makeText(activity, R.string.not_find_uri_scheme, Toast.LENGTH_LONG).show();
+    throw new IllegalStateException(context.getString(R.string.not_find_uri_scheme));
   }
 
   public Environment getAppEnvironment(){
@@ -128,7 +148,7 @@ public class FlutterZaloSdkPlugin implements FlutterPlugin, ActivityAware, Metho
         final String tagError = "[onPaymentError]";
         final String tagCanel = "[onPaymentCancel]";
         String token = (String) poCall.argument("zptoken");
-        ZaloPaySDK.getInstance().payOrder(activity, token, "demozpdk://app", new PayOrderListener() {
+        ZaloPaySDK.getInstance().payOrder(activity, token, getAppUriScheme(), new PayOrderListener() {
 
           public void onPaymentCanceled(@Nullable String zpTransToken, @Nullable String appTransID) {
             Log.d(tagCanel, String.format("[TransactionId]: %s, [appTransID]: %s", zpTransToken, appTransID));

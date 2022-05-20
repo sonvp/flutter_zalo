@@ -6,7 +6,7 @@
          additional functionality it is fine to subclass or reimplement
          FlutterApplication and put your custom class here. -->
     <application
-        android:name="io.flutter.app.FlutterApplication"
+        android:name="${applicationName}"
         android:label="flutter_zalo_sdk_example"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -43,7 +43,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="demozpdk"
-                    android:host="app" />
+                    android:host="app1" />
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.
@@ -55,6 +55,11 @@
         <meta-data
             android:name="com.vng.zalo.sdk.APP_ID"
             android:value="2553" />
+
+        <meta-data
+            android:name="com.vng.zalo.sdk.URI_SCHEME"
+            android:value="demozpdk://app1" />
+
         <meta-data
             android:name="com.vng.zalo.sdk.ENVIRONMENT"
             android:value="SANDBOX" />
