@@ -71,3 +71,6 @@ fix can't run app
 
 ## 0.1.10
 fix can't build app android when use gradle:4+
+
+## 0.1.11
+update sdk zalo and support run simulator for ios
