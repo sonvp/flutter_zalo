@@ -45,4 +45,5 @@
 - (void)confirmAutoDebit:(NSString *)token;
 
 - (void)navigateToZaloStore;
+- (void)navigateToZaloPayStore;
 @end

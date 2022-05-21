@@ -10,9 +10,11 @@
 #define ZaloPaySDKErrorCode_h
 
 typedef NS_ENUM(NSInteger, ZPPaymentErrorCode) {
+    ZPPaymentErrorCode_AppNotInstall   = -1,
     ZPPaymentErrorCode_InvalidResponse = -2,
     ZPPaymentErrorCode_InvalidOrder    = -3,
     ZPPaymentErrorCode_Fail            = -5,
 };
+
 
 #endif /* ZaloPaySDKErrorCode_h */

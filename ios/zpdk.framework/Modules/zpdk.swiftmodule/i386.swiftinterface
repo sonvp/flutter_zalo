@@ -1,0 +1,164 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.4 (swiftlang-1205.0.26.9 clang-1205.0.19.55)
+// swift-module-flags: -target i386-apple-ios8.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name zpdk
+import Foundation
+import Swift
+import UIKit
+@_exported import zpdk
+public enum FlushBehaviour {
+  case auto
+  case explicitOnly
+  public static func == (a: zpdk.FlushBehaviour, b: zpdk.FlushBehaviour) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol TrackerType : ObjectiveC.NSObjectProtocol {
+  var userID: Swift.String? { get set }
+  var additionalData: [Swift.String : Swift.String] { get set }
+  var flushBehaviour: zpdk.FlushBehaviour { get set }
+  func start()
+  func track(event: zpdk.TrackerEventType)
+  func flush()
+}
+public protocol TypedTrackerType {
+  associatedtype EventType : zpdk.TrackerEventType
+  var userID: Swift.String? { get set }
+  var additionalData: [Swift.String : Swift.String] { get set }
+  var flushBehaviour: zpdk.FlushBehaviour { get set }
+  func start()
+  func track(event: Self.EventType)
+  func flush()
+}
+final public class DefaultTrackerServer : zpdk.TrackerServer {
+  final public var additionalHttpHeaders: [Swift.String : Swift.String]
+  public init(remoteURL: Foundation.URL = URL(string: "https://api.zalopay.vn/v2/tracking/events")!)
+  @discardableResult
+  final public func flush(data: Foundation.Data, sessionID: Swift.String, completion: @escaping zpdk.FlushCompletion) -> zpdk.Cancellable?
+  @objc deinit
+}
+public struct TypedTracker<EventType> : zpdk.TypedTrackerType where EventType : zpdk.TrackerEventType {
+  public var userID: Swift.String? {
+    get
+    set
+  }
+  public var additionalData: [Swift.String : Swift.String] {
+    get
+    set
+  }
+  public var flushBehaviour: zpdk.FlushBehaviour {
+    get
+    set
+  }
+  public init(tracker: zpdk.TrackerType)
+  public func start()
+  public func track(event: EventType)
+  public func flush()
+}
+extension TrackerType {
+  public func of<EventType>(type: EventType.Type) -> zpdk.TypedTracker<EventType> where EventType : zpdk.TrackerEventType
+}
+public struct Configuration {
+  public static let `default`: zpdk.Configuration
+  public var flushInterval: Foundation.TimeInterval
+  public var numEventsToTryToFlush: Swift.Int
+  public var maxEventsPerSession: Swift.Int
+  public init(flushInterval: Foundation.TimeInterval, numEventsToTryToFlush: Swift.Int, maxEventsPerSession: Swift.Int)
+}
+extension Tracker {
+  @objc public static let shared: zpdk.Tracker
+  @objc final public func trackEvent(_ eventId: Swift.String, metadata: [Swift.String : Any]?)
+  final public func startAndTrackSession(url: Foundation.URL? = nil)
+}
+extension UIDevice {
+  public var modelName: Swift.String {
+    get
+  }
+}
+extension ApplicationEvent {
+  public var id: Swift.String {
+    get
+  }
+  public var metadata: [Swift.String : Any]? {
+    get
+  }
+}
+public enum ApplicationEvent : zpdk.TrackerEventType {
+  case initSession(sessionInfo: [Swift.String : Any]?)
+  case linkOpen(queryItems: [Swift.String : Any]?)
+}
+extension ApplicationEvent {
+  public static func getLinkOpenEvent(from url: Foundation.URL) -> zpdk.ApplicationEvent
+}
+public struct ZPTrackingEvent : zpdk.TrackerEventType {
+  public let id: Swift.String
+  public let metadata: [Swift.String : Any]?
+  public init(id: Swift.String, metadata: [Swift.String : Any]? = nil)
+}
+public protocol APIEventTrackingProtocol : AnyObject {
+  func trackAPI<T>(_ target: (host: Swift.String, path: Swift.String), startTime: Foundation.Date, response: Swift.Result<T, Swift.Error>) where T : zpdk.ProviderObjectType
+}
+public protocol Cancellable {
+  var isCancelled: Swift.Bool { get }
+  func cancel()
+}
+public class FlagCancellable : zpdk.Cancellable {
+  public var isCancelled: Swift.Bool {
+    get
+  }
+  public init()
+  public func cancel()
+  @objc deinit
+}
+public class MessageReceiverCancellable : zpdk.Cancellable {
+  public var isCancelled: Swift.Bool {
+    get
+  }
+  public init(_ disposingBlock: @escaping () -> Swift.Void)
+  public func cancel()
+  @objc deinit
+}
+public protocol TrackerEventType {
+}
+public protocol ProviderObjectType : Swift.Decodable, Swift.Encodable {
+}
+extension Array : zpdk.ProviderObjectType where Element : Swift.Decodable, Element : Swift.Encodable {
+}
+public enum FlushResult {
+  case success
+  case serverError
+  case noConnectivity
+  public static func == (a: zpdk.FlushResult, b: zpdk.FlushResult) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public typealias FlushCompletion = (zpdk.FlushResult) -> Swift.Void
+public protocol TrackerServer {
+  func flush(data: Foundation.Data, sessionID: Swift.String, completion: @escaping zpdk.FlushCompletion) -> zpdk.Cancellable?
+}
+@objc @_inheritsConvenienceInitializers final public class Tracker : ObjectiveC.NSObject, zpdk.TrackerType {
+  final public var currentSessionID: Swift.String {
+    get
+  }
+  final public var userID: Swift.String?
+  final public var additionalData: [Swift.String : Swift.String]
+  final public var flushBehaviour: zpdk.FlushBehaviour
+  @objc final public func start()
+  final public func track(event: zpdk.TrackerEventType)
+  final public func flush()
+  @objc deinit
+  @objc override dynamic public init()
+}
+extension Tracker {
+  final public var zaloID: Swift.String? {
+    get
+    set
+  }
+}
+extension zpdk.FlushBehaviour : Swift.Equatable {}
+extension zpdk.FlushBehaviour : Swift.Hashable {}
+extension zpdk.FlushResult : Swift.Equatable {}
+extension zpdk.FlushResult : Swift.Hashable {}
