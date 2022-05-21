@@ -68,3 +68,6 @@ android can't open zalopay when targetSdkVersion 30
 
 ## 0.1.9
 fix can't run app
+
+## 0.1.10
+fix can't build app android when use gradle:4+
