@@ -16,6 +16,10 @@ rootProject.allprojects {
     repositories {
         google()
         jcenter()
+        flatDir {
+            dirs project(':flutter_zalopay_sdk').file('libs')
+            // e.g. dirs project(':url_launcher').file('libs')  - don't miss the ':'
+        }
     }
 }
 
@@ -33,7 +37,9 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation files('libs/zpdk-release.aar')
+//    implementation fileTree(include: ['*.jar'], dir: 'libs')
+//    implementation files('libs/zpdk-release.aar')
+    implementation (name: 'zpdk-release', ext: 'aar')
+
 }
 
