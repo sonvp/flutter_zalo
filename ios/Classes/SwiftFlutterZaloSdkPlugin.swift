@@ -57,7 +57,14 @@ public class SwiftFlutterZaloSdkPlugin: NSObject, FlutterPlugin, ZPPaymentDelega
         guard let eventSink = SwiftFlutterZaloSdkPlugin.eventSink else {
           return
         }
-        eventSink(["errorCode": PAYMENTERROR, "zpTranstoken": zpTranstoken ?? "", "appTransId": appTransId ?? ""])
+        
+        switch errorCode {
+        case .appNotInstall:
+            ZaloPaySDK.sharedInstance().navigateToZaloPayStore();
+        default:
+            eventSink(["errorCode": PAYMENTERROR, "zpTranstoken": zpTranstoken ?? "", "appTransId": appTransId ?? ""])
+        }
+      
     }
     
 }

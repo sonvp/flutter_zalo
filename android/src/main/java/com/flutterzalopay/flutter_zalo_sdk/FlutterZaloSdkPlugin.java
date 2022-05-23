@@ -164,7 +164,12 @@ public class FlutterZaloSdkPlugin implements FlutterPlugin, ActivityAware, Metho
           @Override
           public void onPaymentError(ZaloPayError zaloPayErrorCode, String zpTransToken, String appTransID) {
             Log.d(tagError, String.format("[zaloPayErrorCode]: %s, [zpTransToken]: %s, [appTransID]: %s", zaloPayErrorCode.toString(), zpTransToken, appTransID));
-            poResult.success("Giao dịch thất bại");
+
+            if (zaloPayErrorCode.equals(ZaloPayError.PAYMENT_APP_NOT_FOUND)) {
+              ZaloPaySDK.getInstance().navigateToZaloPayOnStore(activity.getApplicationContext());
+            } else {
+              poResult.success("Giao dịch thất bại");
+            }
           }
         });
         break;

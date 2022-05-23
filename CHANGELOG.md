@@ -74,3 +74,7 @@ fix can't build app android when use gradle:4+
 
 ## 0.1.11
 update sdk zalo and support run simulator for ios
+
+## 0.1.12
+open play store or app store when device not install zalopay
+
