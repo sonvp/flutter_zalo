@@ -135,7 +135,7 @@ class _HomeZaloPayState extends State<HomeZaloPay> {
         visible: showResult,
         child: GestureDetector(
           onTap: () async {
-            FlutterZaloPaySdk.payOrder(zpToken: zpToken).listen((event) {
+            FlutterZaloPaySdk.payOrder(zpToken: zpToken).then((event) {
               setState(() {
                 switch (event) {
                   case FlutterZaloPayStatus.cancelled:
