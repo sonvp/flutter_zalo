@@ -38,7 +38,7 @@ class ZPPaymentResultHandler : NSObject, ZPPaymentDelegate {
 public class SwiftFlutterZaloSdkPlugin: NSObject, FlutterPlugin{
         
     static var channel : FlutterMethodChannel!
-    static var paymentHandler: ZPPaymentResultHandler!
+    var paymentHandler: ZPPaymentResultHandler!
 
     public static func register(with registrar: FlutterPluginRegistrar) {
         channel = FlutterMethodChannel(name: "flutter.native/channelPayOrder", binaryMessenger: registrar.messenger())
