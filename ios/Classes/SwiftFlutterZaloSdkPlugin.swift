@@ -16,11 +16,11 @@ class ZPPaymentResultHandler : NSObject, ZPPaymentDelegate {
     }
     
     func paymentDidSucceeded(_ transactionId: String!, zpTranstoken: String!, appTransId: String!) {
-        result(["errorCode": PAYMENTCOMPLETE, "zpTranstoken": zpTranstoken ?? "", "transactionId": transactionId ?? "", "appTransId": appTransId ?? ""])
+        result(PAYMENTCOMPLETE)
     }
     
     func paymentDidCanceled(_ zpTranstoken: String!, appTransId: String!) {
-        result(["errorCode": PAYMENTCANCELED, "zpTranstoken": zpTranstoken ?? "", "appTransId": appTransId ?? ""])
+        result(PAYMENTCANCELED)
     }
     
     func paymentDidError(_ errorCode: ZPPaymentErrorCode, zpTranstoken: String!, appTransId: String!) {
@@ -28,7 +28,7 @@ class ZPPaymentResultHandler : NSObject, ZPPaymentDelegate {
         case .appNotInstall:
             ZaloPaySDK.sharedInstance().navigateToZaloPayStore();
         default:
-            result(["errorCode": PAYMENTERROR, "zpTranstoken": zpTranstoken ?? "", "appTransId": appTransId ?? ""])
+            result(PAYMENTERROR)
         }
     }
     
