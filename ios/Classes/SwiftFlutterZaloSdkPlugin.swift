@@ -39,10 +39,12 @@ public class SwiftFlutterZaloSdkPlugin: NSObject, FlutterPlugin{
         
     static var channel : FlutterMethodChannel!
     static var paymentHandler: ZPPaymentResultHandler!
+
     public static func register(with registrar: FlutterPluginRegistrar) {
-    channel = FlutterMethodChannel(name: "flutter.native/channelPayOrder", binaryMessenger: registrar.messenger())
-    let instance = SwiftFlutterZaloSdkPlugin()
-    registrar.addMethodCallDelegate(instance, channel: channel)
+        channel = FlutterMethodChannel(name: "flutter.native/channelPayOrder", binaryMessenger: registrar.messenger())
+        let instance = SwiftFlutterZaloSdkPlugin()
+        registrar.addApplicationDelegate(instance)
+        registrar.addMethodCallDelegate(instance, channel: channel)
     }
 
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
