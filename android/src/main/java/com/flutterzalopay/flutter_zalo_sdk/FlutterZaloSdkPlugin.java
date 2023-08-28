@@ -152,13 +152,13 @@ public class FlutterZaloSdkPlugin implements FlutterPlugin, ActivityAware, Metho
 
           public void onPaymentCanceled(@Nullable String zpTransToken, @Nullable String appTransID) {
             Log.d(tagCanel, String.format("[TransactionId]: %s, [appTransID]: %s", zpTransToken, appTransID));
-            poResult.success("User hủy thanh toán");
+            poResult.success(4);
           }
 
           @Override
           public void onPaymentSucceeded(String transactionId, String transToken, String appTransID) {
             Log.d(tagSuccess, String.format("[TransactionId]: %s, [TransToken]: %s, [appTransID]: %s", transactionId, transToken, appTransID));
-            poResult.success("Thanh Toán Thành Công");
+            poResult.success(1);
           }
 
           @Override
@@ -168,7 +168,7 @@ public class FlutterZaloSdkPlugin implements FlutterPlugin, ActivityAware, Metho
             if (zaloPayErrorCode.equals(ZaloPayError.PAYMENT_APP_NOT_FOUND)) {
               ZaloPaySDK.getInstance().navigateToZaloPayOnStore(activity.getApplicationContext());
             } else {
-              poResult.success("Giao dịch thất bại");
+              poResult.success(-1);
             }
           }
         });
